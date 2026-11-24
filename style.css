@@ -583,6 +583,7 @@ body.on-home .toasts { bottom: calc(24px + var(--sab)); }
   -webkit-user-select: text; user-select: text;
 }
 
+.stage.drop-on { outline: 3px dashed rgba(139, 92, 246, 0.8); outline-offset: -8px; }
 .text-editor.label-editor { white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; background: rgba(139, 92, 246, 0.05); }
 
 /* ------------------------------------------------------------ status / devices popovers */
