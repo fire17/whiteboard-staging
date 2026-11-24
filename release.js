@@ -2,7 +2,7 @@
 // scripts/prepare-pages.mjs) so the version on screen always matches what was deployed.
 (function () {
   'use strict'
-  var STATE_LABEL = { verified: 'נבדק ✅', pending: 'בעבודה ⏳', limit: 'מגבלה ⚠️' }
+  var STATE_LABEL = { verified: 'נבדק ✅', testing: 'בבדיקה 🧪', pending: 'בעבודה ⏳', limit: 'מגבלה ⚠️' }
 
   function el (tag, cls, text) {
     var n = document.createElement(tag)
