@@ -11,7 +11,7 @@
  *                installs, then the page may postMessage({type:'SKIP_WAITING'}) to activate it immediately.
  */
 
-const CACHE_VERSION = 'pages-20261124T141331648Z';
+const CACHE_VERSION = 'pages-20261124T185109693Z';
 const CACHE = `swhiteboard-shell-${CACHE_VERSION}`;
 const CACHE_PREFIX = 'swhiteboard-shell-';
 
