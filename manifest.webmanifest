@@ -1,0 +1,32 @@
+{
+  "id": "/?app=swhiteboard",
+  "name": "S Whiteboard — גרסת ניסוי",
+  "short_name": "S Whiteboard",
+  "description": "לוח ציור משותף: כל מכשיר יוצר לוח או מצטרף לכל לוח, עובד גם בלי רשת ומסתנכרן כשחוזרים. A shared whiteboard for a TV and phones.",
+  "lang": "he",
+  "dir": "auto",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "theme_color": "#0f1020",
+  "background_color": "#0f1020",
+  "categories": ["productivity", "education", "entertainment"],
+  "prefer_related_applications": false,
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "לוח חדש",
+      "short_name": "חדש",
+      "description": "Create a new board",
+      "url": "/?new=1",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}

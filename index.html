@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<script>try{const u=new URL(location.href),r=u.searchParams.get('__board_route');if(r&&/^\/b\/[A-Za-z0-9]{4,12}(?:[?#]|$)/.test(r))history.replaceState(null,'',r)}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+<title>S Whiteboard · גרסת ניסוי</title>
+<meta name="description" content="לוח ציור משותף לטלוויזיה ולטלפונים — כל מכשיר יוצר לוח או מצטרף, עובד גם בלי רשת. A shared whiteboard for a TV and phones.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0f1020">
+<meta name="application-name" content="Couch Board">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Couch Board">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="/style.css">
+<link rel="modulepreload" href="/app.js">
+</head>
+<body>
+<div id="app">
+  <div class="boot" role="status" aria-live="polite">
+    <svg class="boot-logo" width="72" height="72" viewBox="0 0 64 64" aria-hidden="true">
+      <defs><linearGradient id="bootg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
+      <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#bootg)"/>
+      <rect x="11" y="19" width="42" height="30" rx="6" fill="#0f1020" opacity=".9"/>
+      <path d="M25 11l7 8 7-8" stroke="#0f1020" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".9"/>
+      <path d="M18 41c5-9 9 2 14-6s8 1 13-5" stroke="#fde68a" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+    </svg>
+    <div class="boot-t">Couch Board</div>
+    <div class="boot-s">טוען… · Loading</div>
+  </div>
+</div>
+<noscript><div class="nojs">כדי להשתמש ב-Couch Board צריך להפעיל JavaScript · Couch Board needs JavaScript.</div></noscript>
+<script nomodule>document.getElementById('app').innerHTML='<div class="nojs">הדפדפן הזה ישן מדי ל-Couch Board. נסו Chrome / Safari עדכני.<br>This browser is too old for Couch Board.</div>'</script>
+<script type="module" src="/app.js"></script>
+<script src="/release.js" defer></script>
+</body>
+</html>
