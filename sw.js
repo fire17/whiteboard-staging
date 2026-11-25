@@ -5,13 +5,15 @@
  *                optional file never blocks install; the shell core is retried on every navigation anyway.
  *   - navigate:  network-first (3.5 s timeout) -> cached /index.html. The server serves index.html for every
  *                /b/<CODE>, so any board URL opens offline and y-indexeddb fills in the strokes.
- *   - assets:    same-origin GET -> stale-while-revalidate from the versioned cache.
+ *   - shell:     /app.js /style.css /release.js /index.html -> NETWORK-FIRST (timeout) -> cache, so a refresh
+ *                always runs the newest release when online (stale-while-revalidate here pinned old bundles).
+ *   - assets:    other same-origin GET -> stale-while-revalidate from the versioned cache.
  *   - never:     /yjs, /signal, /healthz, non-GET, cross-origin (pass straight through, never cached).
- *   - update:    CACHE_VERSION is stamped on every build (scripts/make-icons.mjs --stamp-sw); a new version
- *                installs, then the page may postMessage({type:'SKIP_WAITING'}) to activate it immediately.
+ *   - update:    CACHE_VERSION is stamped on every build (build.mjs; prepare-pages.mjs for Pages). A new version
+ *                activates immediately (skipWaiting + clients.claim) instead of waiting for every tab to close.
  */
 
-const CACHE_VERSION = 'pages-20261124T190555578Z';
+const CACHE_VERSION = 'pages-20261125T003021721Z';
 const CACHE = `swhiteboard-shell-${CACHE_VERSION}`;
 const CACHE_PREFIX = 'swhiteboard-shell-';
 
@@ -46,8 +48,8 @@ self.addEventListener('install', (event) => {
       );
       const failed = results.filter((r) => r.status === 'rejected');
       if (failed.length) console.warn('[sw] precache: some files missing', failed.map((f) => String(f.reason)));
-      // first-ever install: take over right away (nothing old to conflict with)
-      if (!self.registration.active) await self.skipWaiting();
+      // take over right away: shell files are network-first, so the new worker never serves a mixed old/new app
+      await self.skipWaiting();
     })()
   );
 });
@@ -105,6 +107,21 @@ async function handleNavigate(event) {
   }
 }
 
+const SHELL_FRESH = new Set(['/app.js', '/style.css', '/release.js', '/index.html', '/manifest.webmanifest']);
+async function handleShell(event, url) {
+  const cache = await caches.open(CACHE);
+  try {
+    const res = await Promise.race([fetch(event.request, { cache: 'no-cache' }), timeout(NAV_TIMEOUT_MS)]);
+    if (res && res.ok && res.type === 'basic') {
+      const copy = res.clone();
+      event.waitUntil(cache.put(url.pathname, copy).catch(() => {}));
+      return res;
+    }
+    if (res) return res;
+  } catch {}
+  return (await cache.match(url.pathname)) || new Response('', { status: 504, statusText: 'offline' });
+}
+
 async function handleAsset(event, url) {
   const cache = await caches.open(CACHE);
   const key = url.pathname + url.search;
@@ -138,5 +155,6 @@ self.addEventListener('fetch', (event) => {
   }
   // source maps / range requests: don't cache, just pass through
   if (url.pathname.endsWith('.map') || req.headers.has('range')) return;
+  if (SHELL_FRESH.has(url.pathname)) { event.respondWith(handleShell(event, url)); return; }
   event.respondWith(handleAsset(event, url));
 });
