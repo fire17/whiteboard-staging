@@ -988,3 +988,17 @@ body.on-home .toasts { bottom: calc(24px + var(--sab)); }
 .rel-verified .rel-state { color: #86efac; }
 .rel-limit .rel-state { color: #fcd34d; }
 .rel-close { margin-top: 12px; min-height: 44px; width: 100%; border: 0; border-radius: 10px; background: #2a2c4a; color: #eef2f7; font: inherit; cursor: pointer; }
+
+/* [home] return to content */
+.home-content-btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 10px; border-radius: 10px; color: var(--text); font-weight: 650; font-size: 13px; }
+.home-content-btn:hover { background: rgba(255,255,255,.08); }
+.home-content-btn .ic { width: 18px; height: 18px; }
+.home-pill { position: absolute; z-index: 15; left: 50%; top: calc(76px + var(--sat, 0px)); transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 22px;
+  background: var(--accent, #8b5cf6); color: #fff; font-weight: 700; font-size: 14px; box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+.home-pill[hidden] { display: none; }
+.home-pill .ic { width: 18px; height: 18px; }
+@media (max-width: 600px) {
+  .home-content-btn { height: 32px; padding: 0 6px; }
+  .home-content-btn .hc-lbl { display: none; }
+}
