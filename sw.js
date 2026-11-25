@@ -13,7 +13,7 @@
  *                activates immediately (skipWaiting + clients.claim) instead of waiting for every tab to close.
  */
 
-const CACHE_VERSION = 'pages-20261125T005410268Z';
+const CACHE_VERSION = 'pages-20261125T005619501Z';
 const CACHE = `swhiteboard-shell-${CACHE_VERSION}`;
 const CACHE_PREFIX = 'swhiteboard-shell-';
 
